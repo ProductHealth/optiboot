@@ -908,9 +908,11 @@ void putch(char ch) {
       "r25"
   );
 #endif
+#if RS485==1
   while (!(UCSR0A & (1 << UDRE0)));  // Wait for empty transmit buffer
   UCSR0A |= (1 << TXC0);  // mark transmission not complete
   while (!(UCSR0A & (1 << TXC0)));   // Wait for the transmission to complete
+#endif
 }
 
 uint8_t getch(void) {
